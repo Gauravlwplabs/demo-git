@@ -1,0 +1,57 @@
+In order to verify the domain, you need to have a public hosted name, or a public DNS provider.
+
+Private DNS names are not supported for endpoint services that you create for Gateway Load Balancer endpoints.
+
+DNS record updates can take up to 48 hours to take effect, but they often take effect much sooner. 
+
+********Amazon VPC private DNS name domain verification TXT records********
+
+Your domain is associated with a set of Domain Name System (DNS) records that you manage through your DNS provider. A TXT record is a type of DNS record that provides additional information about your domain. Each TXT record consists of a name and a value.
+
+When you initiate domain ownership verification using the Amazon VPC Console or API, we give you the name and value to use for the TXT record. For example, if your domain is myexampleservice.com, the TXT record settings that Amazon VPC generates will look similar to the following example:
+
+Endpoint private DNS name TXT record
+Domain verification name	Type	Domain verification value
+_vpce:aksldja21i1.myexampleservice.com
+
+TXT
+
+vpce:asjdakjshd78126eu21
+
+
+
+
+- Open the Route 53 console at https://console.aws.amazon.com/route53/.
+
+- In the navigation pane, choose Hosted Zones.
+
+- Select the domain that you want to add a TXT record to, and then choose Go to Record Sets.
+
+- Choose Create Record Set.
+
+- In the Create Record Set pane, make the following selections:
+
+- For Name, enter the endpoint service Domain verification name from the Amazon VPC console.
+
+- For Type, choose TXT – Text.
+
+- For TTL (Seconds), enter 1800.
+
+- For Value, enter the Domain verification value from the Amazon VPC console.
+
+Choose Create
+
+On the Details tab of the Endpoint Services page in the Amazon VPC console, check the value in the Domain verification status column next for the endpoint. If the status is "pending verification," wait a few minutes, and then choose refresh. Repeat this process until the value in the status column is "verified". You can manually start the verification process. 
+
+*****************Manually initiating the endpoint service private DNS name domain verification**********************
+
+
+Open the Amazon VPC console at https://console.aws.amazon.com/vpc/.
+
+In the navigation pane, choose Endpoint Services.
+
+Select the endpoint service, and then choose Actions, Verify domain owernship for Private DNS Name.
+
+Choose Verify.
+
+If the DNS settings are not correctly updated, the domain will display a status of failed on the Details tab. If this happens, complete the steps on the troubleshooting page at Troubleshooting common private DNS domain verification problems.
